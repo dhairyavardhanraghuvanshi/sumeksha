@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Prettiest Girl in the World 💕</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  color: #333;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+/* PASSWORD SCREEN */
+#lockScreen {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.lock-box {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.lock-box input {
+  padding: 12px;
+  width: 220px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.lock-box button {
+  margin-top: 15px;
+  padding: 12px 25px;
+  background: #ff5e78;
+  border: none;
+  color: white;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+/* SECTIONS */
+section { padding: 60px 20px; }
+
+h1 { font-size: 3rem; }
+
+.typing {
+  font-size: 1.5rem;
+  color: #ff3f5f;
+  min-height: 40px;
+}
+
+/* POLAROIDS */
+.polaroids {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.polaroid {
+  background: white;
+  padding: 15px;
+  width: 220px;
+  border-radius: 12px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+  transform: rotate(-2deg);
+}
+
+.polaroid:nth-child(2) {
+  transform: rotate(2deg);
+}
+
+.polaroid img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.polaroid p {
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+/* CARD */
+.card {
+  background: white;
+  max-width: 800px;
+  margin: auto;
+  padding: 35px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+/* BUTTONS */
+.buttons {
+  position: relative;
+  height: 120px;
+}
+
+button {
+  background: #ff5e78;
+  border: none;
+  color: white;
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  position: absolute;
+}
+
+#yesBtn {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#noBtn {
+  left: 60%;
+}
+
+/* HEARTS */
+.heart {
+  position: fixed;
+  bottom: 50px;
+  font-size: 24px;
+  animation: float 2.5s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes float {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-250px) scale(1.8); opacity: 0; }
+}
+
+/* WIKI */
+#wiki {
+  text-align: left;
+}
+
+.wiki-title {
+  font-family: "Times New Roman", serif;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+
+.wiki-layout {
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  gap: 20px;
+}
+
+.wiki-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.wiki-box {
+  background: #f8f9fa;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.wiki-box img {
+  width: 100%;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+/* FOOTER */
+footer {
+  padding: 30px;
+  opacity: 0.75;
+}
+
+@media (max-width: 768px) {
+  .wiki-layout {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- PASSWORD -->
+<div id="lockScreen">
+  <div class="lock-box">
+    <h2>🔒 Enter the secret</h2>
+    <input type="password" id="password" placeholder="Password">
+    <br>
+    <button onclick="unlock()">Unlock 💖</button>
+    <p id="error" style="color:red;"></p>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div id="content" style="display:none;">
+
+<section>
+  <h1>Hi, Sumeksha Raghuvanshi 💕</h1>
+  <div class="typing" id="typing"></div>
+</section>
+
+<!-- POLAROIDS RESTORED -->
+<section>
+  <h2>Proof That You’re Unreal 📸</h2>
+  <div class="polaroids">
+    <div class="polaroid">
+      <img src="photo1.jpg">
+      <p>Too pretty to be real</p>
+    </div>
+    <div class="polaroid">
+      <img src="photo2.jpg">
+      <p>Main character energy</p>
+    </div>
+  </div>
+</section>
+
+<!-- VALENTINE -->
+<section>
+  <div class="card">
+    <h2>Important Question 💌</h2>
+    <p>Will you be my Valentine?</p>
+
+    <div class="buttons">
+      <button id="yesBtn" onclick="yes()">YES 💖</button>
+      <button id="noBtn">No 🙃</button>
+    </div>
+
+    <p id="answer"></p>
+  </div>
+</section>
+
+<!-- WIKI RESTORED -->
+<section>
+  <div class="card" id="wiki">
+    <h2 class="wiki-title">The Prettiest Girl in the World</h2>
+
+    <div class="wiki-layout">
+      <div class="wiki-text">
+        <p><strong>Sumeksha Raghuvanshi</strong> is widely recognized as the prettiest girl in the world.
+        Scientists, poets, and random people on the internet agree that her smile alone
+        has the ability to improve moods instantly.</p>
+
+        <p>She is best known for her kindness, sense of humor, and the fact that someone
+        is extremely lucky to love her.</p>
+
+        <p>Attempts to rank anyone above her have repeatedly failed.</p>
+      </div>
+
+      <div class="wiki-box">
+        <img src="photo3.jpg">
+        <p><strong>Name:</strong> Sumeksha Raghuvanshi</p>
+        <p><strong>Known for:</strong> Being perfect</p>
+        <p><strong>Status:</strong> Taken 💍</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Made with love by someone who fell hard 💘
+</footer>
+
+</div>
+
+<script>
+/* PASSWORD */
+const SECRET = "iloveyou";
+function unlock() {
+  const input = document.getElementById("password").value;
+  if (input === SECRET) {
+    lockScreen.style.display = "none";
+    content.style.display = "block";
+  } else {
+    error.textContent = "Wrong password 😌";
+  }
+}
+
+/* TYPING */
+const texts = [
+  "You’re my favorite person ❤️",
+  "You make life softer ✨",
+  "You’re literally magic 💫"
+];
+let i = 0, j = 0;
+const typingDiv = document.getElementById("typing");
+
+function type() {
+  if (j < texts[i].length) {
+    typingDiv.textContent += texts[i][j++];
+    setTimeout(type, 100);
+  } else setTimeout(erase, 2000);
+}
+function erase() {
+  if (j > 0) {
+    typingDiv.textContent = texts[i].substring(0, --j);
+    setTimeout(erase, 50);
+  } else {
+    i = (i + 1) % texts.length;
+    setTimeout(type, 500);
+  }
+}
+type();
+
+/* RUNAWAY NO */
+noBtn.addEventListener("mouseover", () => {
+  noBtn.style.left = Math.random() * 70 + "%";
+  noBtn.style.top = Math.random() * 60 + "px";
+});
+
+/* HEART EXPLOSION */
+function yes() {
+  answer.textContent = "Best decision ever 💍💖";
+  for (let i = 0; i < 25; i++) createHeart();
+}
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.textContent = "💖";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = 20 + Math.random() * 20 + "px";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 2500);
+}
+</script>
+
+</body>
+</html>
